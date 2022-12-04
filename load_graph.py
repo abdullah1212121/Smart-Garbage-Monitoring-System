@@ -20,6 +20,12 @@ def main():
         elif (loc[2] == 0):
             pygame.draw.circle(screen, (0,255,0), (loc[0], loc[1]), 5)
 
+    for i in range(len(adj)):
+        for j in range(len(adj[0])):
+            if adj[i][j] != 0:
+                pygame.draw.line(screen, (255, 0, 0), (locs[i][0], locs[i][1]), (locs[j][0], locs[j][1]))
+
+
 
     while running:
         events = pygame.event.get()
