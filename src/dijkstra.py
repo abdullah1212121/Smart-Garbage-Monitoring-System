@@ -15,9 +15,9 @@ def dijkstra(graph, start, end):
         if current_vertex not in visited: 
             visited.add(current_vertex)     
 
-        for neighbor in graph[current_vertex]:
+        for neighbor in graph[current_vertex]['neighbors']:
             if neighbor not in visited: 
-                cost = current_cost + graph[current_vertex][neighbor]
+                cost = current_cost + graph[current_vertex]['neighbors'][neighbor]
 
                 if cost < node_data[neighbor]['cost']:
                     node_data[neighbor]['cost'] = cost
