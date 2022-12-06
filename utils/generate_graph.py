@@ -2,8 +2,6 @@ import sys
 import json
 import math
 import pygame
-import numpy as np
-from PIL import Image
 
 class GraphGenerator:
     def __init__(self, name):
