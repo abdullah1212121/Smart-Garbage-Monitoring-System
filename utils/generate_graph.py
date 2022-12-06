@@ -38,12 +38,8 @@ class GraphGenerator:
     def distance(self, node1, node2):
         return math.sqrt((node2[0] - node1[0])**2 + (node2[1] - node1[1])**2)
 
-    def add_node(self, pos, bin=False):
-        if bin:
-            self.graph[self.current_node_idx] = {'pos': {'x': pos[0], 'y': pos[1]}, 'type': 'bin', 'neighbors': {}}
-        else:
-            self.graph[self.current_node_idx] = {'pos': {'x': pos[0], 'y': pos[1]}, 'type': 'node', 'neighbors': {}}
-        
+    def add_node(self, pos, type):
+        self.graph[self.current_node_idx] = {'pos': {'x': pos[0], 'y': pos[1]}, 'type': type, 'neighbors': {}}
         self.current_node_idx += 1
         self.num_of_nodes += 1
         print(self.graph)
@@ -70,6 +66,8 @@ class GraphGenerator:
                 pygame.draw.circle(self.screen, (255,0,0), (self.graph[node]['pos']['x'], self.graph[node]['pos']['y']), 5)
             elif self.graph[node]['type'] == 'node':
                 pygame.draw.circle(self.screen, (0,255,0), (self.graph[node]['pos']['x'], self.graph[node]['pos']['y']), 5)
+            elif self.graph[node]['type'] == 'garage':
+                pygame.draw.circle(self.screen, (0,0,255), (self.graph[node]['pos']['x'], self.graph[node]['pos']['y']), 5)
 
             for neighbor in self.graph[node]['neighbors']:
                 pygame.draw.line(self.screen, (255, 0, 0), (self.graph[node]['pos']['x'], self.graph[node]['pos']['y']), (self.graph[neighbor]['pos']['x'], self.graph[neighbor]['pos']['y']))
@@ -103,11 +101,15 @@ class GraphGenerator:
                 if node_nearby == None:
                     if (event.button == 1):
                         print("adding node")
-                        self.add_node(pos, False)
+                        self.add_node(pos, 'node')
+
+                    if (event.button == 2):
+                        print("adding garage")
+                        self.add_node(pos, 'garage')
 
                     if (event.button == 3):
                         print("adding bin")
-                        self.add_node(pos, True)
+                        self.add_node(pos, 'bin')
                 
                 else:
                     print("node exists")

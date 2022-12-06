@@ -1,8 +1,9 @@
 import sys
 import json
 import pygame
+import src.dijkstra
 
-class GraphLoader:
+class ShortestPath:
     def __init__(self, name):
         pygame.init()
 
@@ -12,25 +13,40 @@ class GraphLoader:
         self.screen = pygame.display.set_mode((self.map.get_width(), self.map.get_height()))
         self.screen.blit(self.map, (0, 0))
 
-        self.load_graph(f'data/maps/{self.name}/{self.name}.json')
+        self.graph = self.load_graph(f'data/maps/{self.name}/{self.name}.json')
+        self.bin_nodes = self.get_bins()
+
+        print(self.bin_nodes)
 
     def load_graph(self, path):
         file = open(path)
-        self.graph = json.load(file)
+        return json.load(file)
 
-    def update_graph(self):
+    def get_bins(self):
+        bins = []
+        for node in self.graph:
+            if self.graph[node]['type'] == 'bin':
+                bins.append(node)
+
+        return bins
+
+    def update_graph_complete(self):
         self.screen.blit(self.map, (0, 0))
         for node in self.graph:
             if self.graph[node]['type'] == 'bin':
                 pygame.draw.circle(self.screen, (255,0,0), (self.graph[node]['pos']['x'], self.graph[node]['pos']['y']), 5)
             elif self.graph[node]['type'] == 'node':
                 pygame.draw.circle(self.screen, (0,255,0), (self.graph[node]['pos']['x'], self.graph[node]['pos']['y']), 5)
-            elif self.graph[node]['type'] == 'garage':
-                pygame.draw.circle(self.screen, (0,0,255), (self.graph[node]['pos']['x'], self.graph[node]['pos']['y']), 5)
 
             for neighbor in self.graph[node]['neighbors']:
                 pygame.draw.line(self.screen, (255, 0, 0), (self.graph[node]['pos']['x'], self.graph[node]['pos']['y']), (self.graph[neighbor]['pos']['x'], self.graph[neighbor]['pos']['y']))
 
+    def update_graph(self, trajectory=None):
+        self.screen.blit(self.map, (0, 0))
+        for node in self.graph:
+            if self.graph[node]['type'] == 'bin':
+                pygame.draw.circle(self.screen, (255,0,0), (self.graph[node]['pos']['x'], self.graph[node]['pos']['y']), 5)
+            
 
     def update(self):
         events = pygame.event.get()
@@ -43,12 +59,12 @@ class GraphLoader:
         pygame.display.update()
 
 def main():
-    graph_loader = GraphLoader("pondicherry_india")
+    shortest_path = ShortestPath("pondicherry_india")
     
     running = True
 
     while running:
-        graph_loader.update()   
+        shortest_path.update()   
  
 if __name__ == "__main__":
     main()
