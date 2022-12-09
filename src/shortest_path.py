@@ -1,13 +1,13 @@
 import sys
 import json
 import pygame
-import random
-import numpy as np
 from src.dijkstra import dijkstra
+from src.firebase_reader import FirebaseReader
 
 class ShortestPath:
     def __init__(self, name):
         pygame.init()
+        self.firebase_reader = FirebaseReader()
 
         self.name = name
         
@@ -19,11 +19,13 @@ class ShortestPath:
         self.bins = self.get_bins()
         self.garage = self.get_garage()
 
-        self.active_bins = random.sample(self.bins, 5)
+        self.active_bins = self.firebase_reader.get_active_bins()
+        # self.active_bins = random.sample(self.bins, 5)
         # self.active_bins = self.bins[:5]
         
-        trajectory = self.compute_path(self.active_bins.copy())
-        self.draw_bins(trajectory)
+        if len(self.active_bins) > 0:
+            trajectory = self.compute_path(self.active_bins.copy())
+            self.draw_bins(trajectory)
 
     def load_graph(self, path):
         file = open(path)
