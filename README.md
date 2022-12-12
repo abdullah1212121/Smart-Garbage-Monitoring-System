@@ -15,7 +15,7 @@ The idea behind the project is that, currently the garbage truck performs a circ
 The complete system consists of 3 major parts:
 * An **arduino-based embedded device** that gets fitted to all the garbage bins in the city. This component measures the amount of garbage in the bin with the help of an ultrasonic distance sensor and uploads the data to a cloud database. Each unit has a unique identification.
 * A **realtime database** is built using firebase. It keeps track of the garbage level in each of the bins.
-* A **python app** that reads the database and determines all the bins that need to be emptied and then proceeds to generate the shortest path joining the bins for the garbage collection truck.
+* A **python app** that reads the database and determines all the bins that need to be emptied and then proceeds to generate the shortest path joining the bins for the garbage collection truck using Dijkstra's algorithm.
 
 ## Getting Started
 
@@ -43,7 +43,11 @@ To install the arduino libraries, open the Arduino IDE, go to **Sketch -> Includ
 * Firebase Arduino Client Library for ESP8266 and ESP32
 * NewPing
 
+You will also need to create a new realtime database on firebase since I have not made mine public. Instructions can be found at the following link: [https://firebase.google.com/docs/database] (https://firebase.google.com/docs/database)
+
 ## Usage
+The first step is to generate the graph of the town for the Dijkstra shortest path algorithm. To do this, add a new directory containing a screenshot of your town to the **data/maps** directory. Refer to the existing example.
+
 
 
 ## Improvements
@@ -66,12 +70,8 @@ Project Link: [https://github.com/kousheekc/Smart-Garbage-Monitoring-System](htt
 
 ### Graph generation
 
-<img src="media/result1.png" width=640>
+<img src="media/graph.png" width=640>
 
 ### Trajectory generation
 
-<img src="media/result2.png" width=640>
-
-### Realtime cloud database
-
-<img src="media/overview.jpg" width=640>
+<img src="media/trajectory1.png" width=640>

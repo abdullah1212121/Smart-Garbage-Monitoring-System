@@ -1,7 +1,11 @@
 import json
+import argparse
 
 def main():
-    name = "pondicherry_india"
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--town_name', type=str, default="pondicherry_india")
+    
+    name = parser.parse_args().town_name
     file = open(f'data/maps/{name}/{name}.json')
 
     graph = json.load(file)  

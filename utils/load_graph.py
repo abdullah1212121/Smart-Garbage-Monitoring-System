@@ -1,6 +1,7 @@
 import sys
 import json
 import pygame
+import argparse
 
 class GraphLoader:
     def __init__(self, name):
@@ -43,7 +44,10 @@ class GraphLoader:
         pygame.display.update()
 
 def main():
-    graph_loader = GraphLoader("pondicherry_india")
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--town_name', type=str, default="pondicherry_india")
+    
+    graph_loader = GraphLoader(parser.parse_args().town_name)
     
     running = True
 

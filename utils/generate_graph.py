@@ -2,6 +2,7 @@ import sys
 import json
 import math
 import pygame
+import argparse
 
 class GraphGenerator:
     def __init__(self, name):
@@ -126,7 +127,10 @@ class GraphGenerator:
         pygame.display.update()
 
 def main():
-    graph_generator = GraphGenerator("pondicherry_india")
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--town_name', type=str, default="pondicherry_india")
+    
+    graph_generator = GraphGenerator(parser.parse_args().town_name)
     
     running = True
 
