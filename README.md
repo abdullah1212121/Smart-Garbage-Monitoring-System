@@ -74,7 +74,7 @@ python3 -m utils.firebase_init --town_name NAME_OF_YOUR_TOWN_HERE
 
 Next upload the arduino script and change the BIN_ID on line 64 to the appropriate ID and upload the script.
 
-Finally run the following command to get the shortest path between that covers all the active bins.
+Finally run the following command to get the shortest path that covers all the active bins.
 
 ```
 python3 -m src.shortest_path --town_name NAME_OF_YOUR_TOWN_HERE 
