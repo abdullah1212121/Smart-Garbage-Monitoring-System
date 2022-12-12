@@ -3,9 +3,11 @@ A system for monitoring garbage levels in garbage bins and determining the most 
 
 In this project, I develop an end to end software solution for efficient garbage monitoring and collection in urban environments. The solution consists of an embedded electronics module that is IOT-enabled, a realtime cloud database, and a python app. Detailed build instructions can be found at the following link: [https://www.instructables.com/Smart-Garbage-Monitoring-System-Using-Internet-of-/](https://www.instructables.com/Smart-Garbage-Monitoring-System-Using-Internet-of-/). 
 
-A picture of the system is attached below.
+A picture of the module and an example trajectory in my hometown is attached below.
 
-<img src="media/cover.jpg">
+<img src="media/overview.jpg">
+
+<img src="media/trajectory1.png">
 
 ## About The Project
 The idea behind the project is that, currently the garbage truck performs a circuit around the city such that it visits every gargabe bin daily. We performed a study and noticed that most of the times the bins were not full and did not require a visit from the garbage truck. This lead to the idea of creating a system to avoid this problem, by informing the garbage collection staff beforehand which are the bins that need to be emptied so that they don't have to visit every bin. In this way, time, fuel, and money is saved, since the trajectory is optmised. A further simulation showed that a 50% reduction in fuel usage is expected and the time to complete the circuit is halved.
