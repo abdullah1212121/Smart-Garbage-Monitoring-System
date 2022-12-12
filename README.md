@@ -46,9 +46,39 @@ To install the arduino libraries, open the Arduino IDE, go to **Sketch -> Includ
 You will also need to create a new realtime database on firebase since I have not made mine public. Instructions can be found at the following link: [https://firebase.google.com/docs/database] (https://firebase.google.com/docs/database)
 
 ## Usage
-The first step is to generate the graph of the town for the Dijkstra shortest path algorithm. To do this, add a new directory containing a screenshot of your town to the **data/maps** directory. Refer to the existing example.
+The first step is to generate the graph of the town where the nodes represent either interesections, bins or the garage and the edges represent the roads. To do this, add a new directory containing a screenshot of your town to the **data/maps** directory. Refer to the existing example.
 
+Next navigate to the directory you cloned earlier and run the following command:
+```
+python3 -m utils.generate_graph --town_name NAME_OF_YOUR_TOWN_HERE
+```
 
+Here are the features of the app:
+* **Left mouse button click** adds interection node
+* **Right mouse button click** adds a bin node
+* **Middle mouse button click** adds a garage node (starting point)
+* **Hovering over a node and pressing x** removes the node
+* **Left mouse button click on two consecutive nodes** creates an edge between them
+* **Space button** saves the graph as an adjacency list
+
+To verify the graph you can run the following command:
+```
+python3 -m utils.load_graph --town_name NAME_OF_YOUR_TOWN_HERE
+```
+
+Complete the initlialisation process by running the following two commands:
+```
+python3 -m utils.generate_bin_data --town_name NAME_OF_YOUR_TOWN_HERE
+python3 -m utils.firebase_init --town_name NAME_OF_YOUR_TOWN_HERE
+```
+
+Next upload the arduino script and change the BIN_ID on line 64 to the appropriate ID and upload the script.
+
+Finally run the following command to get the shortest path between that covers all the active bins.
+
+```
+python3 -m src.shortest_path --town_name NAME_OF_YOUR_TOWN_HERE 
+```
 
 ## Improvements
 - [x] Realtime database
