@@ -43,7 +43,7 @@ To install the arduino libraries, open the Arduino IDE, go to **Sketch -> Includ
 * Firebase Arduino Client Library for ESP8266 and ESP32
 * NewPing
 
-You will also need to create a new realtime database on firebase since I have not made mine public. Instructions can be found at the following link: [https://firebase.google.com/docs/database] (https://firebase.google.com/docs/database)
+You will also need to create a new realtime database on firebase since I have not made mine public. Instructions can be found at the following link: [https://firebase.google.com/docs/database](https://firebase.google.com/docs/database)
 
 ## Usage
 The first step is to generate the graph of the town where the nodes represent either interesections, bins or the garage and the edges represent the roads. To do this, add a new directory containing a screenshot of your town to the **data/maps** directory. Refer to the existing example.
