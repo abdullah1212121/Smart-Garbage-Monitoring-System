@@ -1,6 +1,5 @@
 import json
 
-
 def main():
     name = "pondicherry_india"
     file = open(f'data/maps/{name}/{name}.json')

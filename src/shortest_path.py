@@ -3,6 +3,7 @@ import json
 import pygame
 from src.dijkstra import dijkstra
 from src.firebase_reader import FirebaseReader
+import random
 
 class ShortestPath:
     def __init__(self, name):
@@ -19,8 +20,8 @@ class ShortestPath:
         self.bins = self.get_bins()
         self.garage = self.get_garage()
 
-        self.active_bins = self.firebase_reader.get_active_bins()
-        # self.active_bins = random.sample(self.bins, 5)
+        # self.active_bins = self.firebase_reader.get_active_bins()
+        self.active_bins = random.sample(self.bins, 5)
         # self.active_bins = self.bins[:5]
         
         if len(self.active_bins) > 0:

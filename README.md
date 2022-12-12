@@ -1,0 +1,69 @@
+# Smart Garbage Monitoring System
+A system for monitoring garbage levels in garbage bins and determining the most efficient path for the garbage collection truck.
+
+In this project, I develop an end to end software solution for efficient garbage monitoring and collection in urban environments. The solution consists of an embedded electronics module that is IOT-enabled, a realtime cloud database, and a python app. Detailed build instructions can be found at the following link: [https://www.instructables.com/Smart-Garbage-Monitoring-System-Using-Internet-of-/](https://www.instructables.com/Smart-Garbage-Monitoring-System-Using-Internet-of-/). 
+
+A picture of the system is attached below.
+
+<img src="media/cover.jpg">
+
+## About The Project
+The idea behind the project is that, currently the garbage truck performs a circuit around the city such that it visits every gargabe bin daily. We performed a study and noticed that most of the times the bins were not full and did not require a visit from the garbage truck. This lead to the idea of creating a system to avoid this problem, by informing the garbage collection staff beforehand which are the bins that need to be emptied so that they don't have to visit every bin. In this way, time, fuel, and money is saved, since the trajectory is optmised. A further simulation showed that a 50% reduction in fuel usage is expected and the time to complete the circuit is halved.
+
+The complete system consists of 3 major parts:
+* An arduino-based embedded device that gets fitted to all the garbage bins in the city. This component measures the amount of garbage in the bin with the help of an ultrasonic distance sensor and uploads the data to a cloud database. Each unit has a unique identification.
+* The realtime database is built using firebase. It keeps track of the garbage level in each of the bins.
+* A python app that reads the database and determines all the bins that need to be emptied and then proceeds to generate the shortest path joining the bins for the garbage collection truck.
+
+## Getting Started
+
+### Prerequisites
+* Python3
+    * firebase_admin
+    * pygame
+* Arduino IDE
+    * ESP8266WiFi drivers
+    * Firebase_ESP_Client
+    * NewPing
+
+### Installation
+To install the Smart Garbage Monitoring System, install the required librarires and clone this repository using the following commands:
+
+```
+pip install firebase-admin
+pip install pygame
+git clone https://github.com/kousheekc/Smart-Garbage-Monitoring-System.git
+```
+
+If you decide to use an ESP8266, you will need the required board drivers. Open the Arduino IDE, go to **File -> Preferences** and paste the following link **https://arduino.esp8266.com/stable/package_esp8266com_index.json** in the **Additional boards manager URLS** section. Next, go to **Tools -> Board -> Boards Manager** and search for **ESP8266** and install the drivers.
+
+To install the arduino libraries, open the Arduino IDE, go to **Sketch -> Include Library -> Manage Libraries** and search and install the following libraries:
+* Firebase Arduino Client Library for ESP8266 and ESP32
+* NewPing
+
+## Usage
+
+
+## Improvements
+
+
+## License
+Distributed under the MIT License. See [LICENSE](LICENSE) for more information.
+
+## Contact
+Kousheek Chakraborty - kousheekc@gmail.com
+
+Project Link: [https://github.com/kousheekc/Smart-Garbage-Monitoring-System](https://github.com/kousheekc/Smart-Garbage-Monitoring-System)
+
+
+### Graph generation
+
+<img src="media/result1.png" width=640>
+
+### Trajectory generation
+
+<img src="media/result2.png" width=640>
+
+### Realtime cloud database
+
+<img src="media/overview.jpg" width=640>
