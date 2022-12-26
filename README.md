@@ -54,7 +54,7 @@ python3 -m utils.generate_graph --town_name NAME_OF_YOUR_TOWN_HERE
 ```
 
 Here are the features of the app:
-* **Left mouse button click** adds interection node
+* **Left mouse button click** adds an intersection node
 * **Right mouse button click** adds a bin node
 * **Middle mouse button click** adds a garage node (starting point)
 * **Hovering over a node and pressing x** removes the node
