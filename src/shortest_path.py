@@ -8,20 +8,20 @@ import argparse
 class ShortestPath:
     def __init__(self, name):
         pygame.init()
-        self.firebase_reader = FirebaseReader()
+        self.firebase_reader = FirebaseReader() # creates an instance of a firebase class to interact with the firebase 
 
-        self.name = name
+        self.name = name # loads the name of the map 
         
-        self.map = pygame.image.load(f'data/maps/{self.name}/{self.name}.png')
+        self.map = pygame.image.load(f'data/maps/{self.name}/{self.name}.png') #loads the map 
         self.screen = pygame.display.set_mode((self.map.get_width(), self.map.get_height()))
-        self.screen.blit(self.map, (0, 0))
+        self.screen.blit(self.map, (0, 0)) #draws the map 
 
-        self.graph = self.load_graph(f'data/maps/{self.name}/{self.name}.json')
-        self.bins = self.get_bins()
-        self.garage = self.get_garage()
+        self.graph = self.load_graph(f'data/maps/{self.name}/{self.name}.json') #loads a graph 
+        self.bins = self.get_bins() #finds the bin nodes 
+        self.garage = self.get_garage() #finds the location of the vehicles 
 
         self.active_bins = self.firebase_reader.get_active_bins()
-        # self.active_bins = random.sample(self.bins, 5)
+        # self.active_bins = random.sample(self.bins, 5) 
         # self.active_bins = self.bins[:5]
         
         if len(self.active_bins) > 0:
