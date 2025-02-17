@@ -21,8 +21,8 @@ class ShortestPath:
         self.garage = self.get_garage() #finds the location of the vehicles 
 
         self.active_bins = self.firebase_reader.get_active_bins()
-        # self.active_bins = random.sample(self.bins, 5) 
-        # self.active_bins = self.bins[:5]
+         self.active_bins = random.sample(self.bins, 5) 
+         self.active_bins = self.bins[:5]
         
         if len(self.active_bins) > 0:
             trajectory = self.compute_path(self.active_bins.copy())
