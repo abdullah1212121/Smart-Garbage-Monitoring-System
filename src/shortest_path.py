@@ -24,15 +24,15 @@ class ShortestPath:
          self.active_bins = random.sample(self.bins, 5) 
          self.active_bins = self.bins[:5]
         
-        if len(self.active_bins) > 0:
+        if len(self.active_bins) > 0: #checks if there are active bins 
             trajectory = self.compute_path(self.active_bins.copy())
             self.draw_bins(trajectory)
 
-    def load_graph(self, path):
+    def load_graph(self, path): #loads graph data 
         file = open(path)
         return json.load(file)
 
-    def get_bins(self):
+    def get_bins(self): #collects all nodes 
         bins = []
         for node in self.graph:
             if self.graph[node]['type'] == 'bin':
@@ -40,14 +40,14 @@ class ShortestPath:
 
         return bins
 
-    def get_garage(self):
+    def get_garage(self):#returns garage
         for node in self.graph:
             if self.graph[node]['type'] == 'garage':
                 return node
 
         return None
         
-    def compute_path(self, bins):
+    def compute_path(self, bins): # computes shortest path using dijkstra algorithm 
         num_of_bins = len(bins)
         min_idx = None
         min_cost = float('inf')
@@ -80,7 +80,7 @@ class ShortestPath:
         return full_path
 
 
-    def update_graph_complete(self):
+    def update_graph_complete(self): #redraws the whole graph and draws lines to represent connections between nodes
         self.screen.blit(self.map, (0, 0))
         for node in self.graph:
             if self.graph[node]['type'] == 'bin':
@@ -93,7 +93,7 @@ class ShortestPath:
             for neighbor in self.graph[node]['neighbors']:
                 pygame.draw.line(self.screen, (255, 0, 0), (self.graph[node]['pos']['x'], self.graph[node]['pos']['y']), (self.graph[neighbor]['pos']['x'], self.graph[neighbor]['pos']['y']))
 
-    def draw_bins(self, trajectory):
+    def draw_bins(self, trajectory):#draws bins and garage and highlights inactive bins as red and active bins as green
         # self.screen.blit(self.map, (0, 0))
         for node in self.graph:
             if self.graph[node]['type'] == 'bin':
